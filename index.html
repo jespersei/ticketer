@@ -7,18 +7,30 @@
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css">
 	<link rel="stylesheet" href="ticketer.css">
-</head>
-<body>
-	
-	<div class="container content">
-		<a href="" id="ticketer-add-ticket"><i class="fa fa-plus"></i> Add Ticket</a>
-	</div>
-
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-resource.min.js">
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular-route.min.js">
    </script>
+</head>
+<body ng-app="ticketerApp">
+	<div class="container content" ng-controller="ticketController">
+		<span>{{remaining()}} of {{tickets.length}} remaining</span>
+      [ <a href="" ng-click="archive()">archive</a> ]
+      <ul class="unstyled">
+        <li ng-repeat="ticket in tickets">
+          <input type="checkbox" ng-model="ticket.done">
+          <span class="done-{{ticket.done}}">{{ticket.text}}</span>
+        </li>
+      </ul>
+      <form ng-submit="addTicket()">
+        <input type="text" ng-model="ticketTitle"  size="30"
+               placeholder="add new ticket here">
+        <input class="btn-primary" type="submit" value="add">
+      </form>
+	</div>
+
+	
 	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js.js"></script>
 	<script src="ticketer.js"></script>
 </body>
